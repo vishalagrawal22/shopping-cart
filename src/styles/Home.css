@@ -1,0 +1,14 @@
+.home-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-details {
+  width: 60%;
+}
+
+.home-image {
+  width: 100%;
+}
