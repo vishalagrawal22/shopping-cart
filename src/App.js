@@ -2,8 +2,38 @@ import { Outlet } from 'react-router-dom';
 
 import './styles/App.css';
 import Nav from './components/Nav';
+import { useState } from 'react';
 
 function App() {
+  const [cart, setCart] = useState({});
+  function addItemToCart(id) {
+    setCart((cart) => {
+      return { ...cart, [id]: 1 };
+    });
+  }
+
+  function updateItemInCart(id, quantity) {
+    setCart((cart) => {
+      return { ...cart, [id]: quantity };
+    });
+  }
+
+  function deleteItemFromCart(id) {
+    setCart((cart) => {
+      const copyCart = { ...cart };
+      delete copyCart[id];
+      return copyCart;
+    });
+  }
+
+  function isItemInCart(id) {
+    return cart.hasOwnProperty(id);
+  }
+
+  function getQuantityOfItem(id) {
+    return cart[id];
+  }
+
   return (
     <>
       <header>
@@ -11,7 +41,15 @@ function App() {
         <Nav />
       </header>
       <main>
-        <Outlet />
+        <Outlet
+          context={{
+            addItemToCart,
+            updateItemInCart,
+            deleteItemFromCart,
+            isItemInCart,
+            getQuantityOfItem,
+          }}
+        />
       </main>
       <footer>
         <p>
