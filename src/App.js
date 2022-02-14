@@ -13,6 +13,21 @@ function App() {
       <main>
         <Outlet />
       </main>
+      <footer>
+        <p>
+          Shopping cart icons created by
+          <a
+            href="https://www.flaticon.com/free-icons/shopping-cart"
+            title="shopping cart icons"
+          >
+            Freepik - Flaticon
+          </a>
+        </p>
+        <p>
+          Product data from
+          <a href="https://fakestoreapi.com/">Fake Store API</a>
+        </p>
+      </footer>
     </>
   );
 }
