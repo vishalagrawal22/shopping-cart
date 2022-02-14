@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+}
+
+nav a.active {
+  color: rgb(40, 180, 40);
+}
