@@ -33,6 +33,7 @@ header h1 {
 
 main {
   flex: 1 1 auto;
+  padding: 1rem;
 }
 
 footer {
