@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import ProductCard, { ProductFactory } from './ProductCard';
 import '../styles/Shop.css';
-import { useOutletContext } from 'react-router-dom';
 
 function Shop() {
   const [products, setProducts] = useState([]);
-  const {
-    addItemToCart,
-    updateItemInCart,
-    deleteItemFromCart,
-    isItemInCart,
-    getQuantityOfItem,
-  } = useOutletContext();
 
   useEffect(() => {
     async function fetchData() {
@@ -39,15 +32,7 @@ function Shop() {
     return (
       <div className="product-list">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAdd={addItemToCart}
-            onUpdate={updateItemInCart}
-            onDelete={deleteItemFromCart}
-            isProductInCart={isItemInCart}
-            getQuantityOfProduct={getQuantityOfItem}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     );

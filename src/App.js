@@ -2,38 +2,10 @@ import { Outlet } from 'react-router-dom';
 
 import './styles/App.css';
 import Nav from './components/Nav';
-import { useState } from 'react';
+import { useCart, CartContext } from './components/Cart';
 
 function App() {
-  const [cart, setCart] = useState({});
-  function addItemToCart(id) {
-    setCart((cart) => {
-      return { ...cart, [id]: 1 };
-    });
-  }
-
-  function updateItemInCart(id, quantity) {
-    setCart((cart) => {
-      return { ...cart, [id]: quantity };
-    });
-  }
-
-  function deleteItemFromCart(id) {
-    setCart((cart) => {
-      const copyCart = { ...cart };
-      delete copyCart[id];
-      return copyCart;
-    });
-  }
-
-  function isItemInCart(id) {
-    return cart.hasOwnProperty(id);
-  }
-
-  function getQuantityOfItem(id) {
-    return cart[id];
-  }
-
+  const cart = useCart();
   return (
     <>
       <header>
@@ -41,15 +13,9 @@ function App() {
         <Nav />
       </header>
       <main>
-        <Outlet
-          context={{
-            addItemToCart,
-            updateItemInCart,
-            deleteItemFromCart,
-            isItemInCart,
-            getQuantityOfItem,
-          }}
-        />
+        <CartContext.Provider value={cart}>
+          <Outlet />
+        </CartContext.Provider>
       </main>
       <footer>
         <p>

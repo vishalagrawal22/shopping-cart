@@ -1,37 +1,36 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from './Cart';
+
 import '../styles/ProductCard.css';
 
 function ProductFactory(id, title, price, category, description, image) {
   return { id, title, price, category, description, image };
 }
 
-function ProductForm({
-  product,
-  onAdd,
-  onUpdate,
-  onDelete,
-  isProductInCart,
-  getQuantityOfProduct,
-}) {
-  if (isProductInCart(product.id)) {
+function ProductForm({ product }) {
+  const { addItem, deleteItem, updateItem, isItemInCart, getQuantity } =
+    useContext(CartContext);
+
+  if (isItemInCart(product)) {
     function onIncrement() {
-      const quantity = getQuantityOfProduct(product.id);
-      onUpdate(product.id, quantity + 1);
+      const quantity = getQuantity(product);
+      updateItem(product, quantity + 1);
     }
 
     function onDecrement() {
-      const quantity = getQuantityOfProduct(product.id);
+      const quantity = getQuantity(product);
       if (quantity > 1) {
-        onUpdate(product.id, quantity - 1);
+        updateItem(product, quantity - 1);
       }
     }
 
-    function getQuantity() {
-      return getQuantityOfProduct(product.id);
+    function getQuantityInCart() {
+      return getQuantity(product);
     }
 
     function deleteFromCart() {
-      onDelete(product.id);
+      deleteItem(product);
     }
 
     return (
@@ -39,7 +38,7 @@ function ProductForm({
         <div>Quantity</div>
         <div className="quantity-controls">
           <button onClick={onDecrement}>-</button>
-          <div>{getQuantity()}</div>
+          <div>{getQuantityInCart()}</div>
           <button onClick={onIncrement}>+</button>
         </div>
         <div className="cart-controls">
@@ -49,7 +48,7 @@ function ProductForm({
     );
   } else {
     function addToCart() {
-      onAdd(product.id);
+      addItem(product);
     }
 
     return (
@@ -62,14 +61,7 @@ function ProductForm({
   }
 }
 
-function ProductCard({
-  product,
-  onAdd,
-  onUpdate,
-  onDelete,
-  isProductInCart,
-  getQuantityOfProduct,
-}) {
+function ProductCard({ product }) {
   let navigate = useNavigate();
   function moveToProductPage() {
     navigate(`/products/${product.id}`);
@@ -82,14 +74,7 @@ function ProductCard({
         <img src={product.image} alt={product.title} />
         <h4>${product.price}</h4>
       </div>
-      <ProductForm
-        product={product}
-        onAdd={onAdd}
-        onUpdate={onUpdate}
-        onDelete={onDelete}
-        isProductInCart={isProductInCart}
-        getQuantityOfProduct={getQuantityOfProduct}
-      />
+      <ProductForm product={product} />
     </div>
   );
 }
