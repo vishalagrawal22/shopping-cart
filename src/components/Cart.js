@@ -2,6 +2,7 @@ import { useState, useContext, createContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { deepCopy } from '../utils/helper-functions';
+import ProductCard from './ProductCard';
 import '../styles/Cart.css';
 import cartSrc from '../images/cart.png';
 
@@ -49,7 +50,10 @@ function useCart() {
   };
 
   let getProducts = () => {
-    const products = cartList.map((cartItem) => cartItem.product);
+    const products = [];
+    for (const key of Object.keys(cartList)) {
+      products.push(cartList[key].product);
+    }
     return products;
   };
 
@@ -65,6 +69,14 @@ function useCart() {
     return cost;
   };
 
+  let clearCart = () => {
+    setCartList({});
+  };
+
+  let placeOrder = () => {
+    alert('This feature has not been implemented yet!');
+  };
+
   return {
     addItem,
     deleteItem,
@@ -74,14 +86,34 @@ function useCart() {
     getProducts,
     getItemCount,
     getTotalCost,
+    clearCart,
+    placeOrder,
   };
 }
 
-function Cart() {
-  return <div></div>;
-}
-
 const CartContext = createContext();
+
+function Cart() {
+  const { getProducts, clearCart, placeOrder } = useContext(CartContext);
+  const products = getProducts();
+  if (products.length === 0) {
+    return <div className="empty-card-message">Cart is empty!</div>;
+  } else {
+    return (
+      <div className="cart-container">
+        <div className="cart-actions">
+          <button onClick={clearCart}>Clear cart</button>
+          <button onClick={placeOrder}>Place order</button>
+        </div>
+        <div className="cart-list">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 function CartSummary() {
   const { getItemCount, getTotalCost } = useContext(CartContext);

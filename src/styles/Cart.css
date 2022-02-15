@@ -17,3 +17,27 @@
   font-size: 1rem;
   padding: 1rem;
 }
+
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.empty-card-message {
+  font-size: 2rem;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.cart-actions button {
+  padding: 0.5rem 1rem;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
