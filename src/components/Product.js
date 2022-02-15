@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { ProductFactory } from './ProductCard';
 import '../styles/Product.css';
@@ -45,6 +45,7 @@ function Product() {
           <h5>{product.category}</h5>
           <p>{product.description}</p>
           <h4>Price: ${product.price}</h4>
+          <Link to="/shop">Back to shop</Link>
         </div>
       </div>
     );
