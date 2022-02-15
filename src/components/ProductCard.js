@@ -64,7 +64,7 @@ function ProductForm({ product }) {
 function ProductCard({ product }) {
   let navigate = useNavigate();
   function moveToProductPage() {
-    navigate(`${product.id}`);
+    navigate(`/shop/${product.id}`);
   }
   return (
     <div className="product-item" id={product.id}>
