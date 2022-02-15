@@ -33,7 +33,23 @@
 }
 
 .cart-actions button {
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.clear-cart {
+  background-color: #dc3545;
+}
+
+.place-order {
+  background-color: #28a745;
+}
+
+.clear-cart,
+.place-order {
+  border: 0px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  color: white;
 }
 
 .cart-container {

@@ -102,8 +102,12 @@ function Cart() {
     return (
       <div className="cart-container">
         <div className="cart-actions">
-          <button onClick={clearCart}>Clear cart</button>
-          <button onClick={placeOrder}>Place order</button>
+          <button className="clear-cart" onClick={clearCart}>
+            Clear cart
+          </button>
+          <button className="place-order" onClick={placeOrder}>
+            Place order
+          </button>
         </div>
         <div className="cart-list">
           {products.map((product) => (
