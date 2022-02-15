@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/ProductCard.css';
 
 function ProductFactory(id, title, price, category, description, image) {
@@ -69,12 +70,18 @@ function ProductCard({
   isProductInCart,
   getQuantityOfProduct,
 }) {
+  let navigate = useNavigate();
+  function moveToProductPage() {
+    navigate(`/products/${product.id}`);
+  }
   return (
     <div className="product-item" id={product.id}>
-      <h3>{product.title}</h3>
-      <h5>{product.category}</h5>
-      <img src={product.image} alt={product.title} />
-      <h4>${product.price}</h4>
+      <div onClick={moveToProductPage}>
+        <h3>{product.title}</h3>
+        <h5>{product.category}</h5>
+        <img src={product.image} alt={product.title} />
+        <h4>${product.price}</h4>
+      </div>
       <ProductForm
         product={product}
         onAdd={onAdd}

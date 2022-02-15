@@ -33,21 +33,25 @@ function Shop() {
     fetchData();
   }, []);
 
-  return (
-    <div className="product-list">
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          onAdd={addItemToCart}
-          onUpdate={updateItemInCart}
-          onDelete={deleteItemFromCart}
-          isProductInCart={isItemInCart}
-          getQuantityOfProduct={getQuantityOfItem}
-        />
-      ))}
-    </div>
-  );
+  if (products.length === 0) {
+    return <div>Shop is Loading...</div>;
+  } else {
+    return (
+      <div className="product-list">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAdd={addItemToCart}
+            onUpdate={updateItemInCart}
+            onDelete={deleteItemFromCart}
+            isProductInCart={isItemInCart}
+            getQuantityOfProduct={getQuantityOfItem}
+          />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default Shop;
