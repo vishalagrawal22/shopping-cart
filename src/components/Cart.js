@@ -1,5 +1,9 @@
-import { useState, createContext } from 'react';
+import { useState, useContext, createContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { deepCopy } from '../utils/helper-functions';
+import '../styles/Cart.css';
+import cartSrc from '../images/cart.png';
 
 function CartItem(product, quantity) {
   return { product, quantity };
@@ -49,6 +53,18 @@ function useCart() {
     return products;
   };
 
+  let getItemCount = () => {
+    return Object.keys(cartList).length;
+  };
+
+  let getTotalCost = () => {
+    let cost = 0;
+    for (const key of Object.keys(cartList)) {
+      cost += cartList[key].product.price * cartList[key].quantity;
+    }
+    return cost;
+  };
+
   return {
     addItem,
     deleteItem,
@@ -56,6 +72,8 @@ function useCart() {
     isItemInCart,
     getQuantity,
     getProducts,
+    getItemCount,
+    getTotalCost,
   };
 }
 
@@ -65,5 +83,25 @@ function Cart() {
 
 const CartContext = createContext();
 
+function CartSummary() {
+  const { getItemCount, getTotalCost } = useContext(CartContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  function goToCart() {
+    navigate('/cart');
+  }
+
+  return (
+    <div className="cart-summary">
+      <img src={cartSrc} alt="cart" />
+      <div>Number of items: {getItemCount()}</div>
+      <div>Total cost: ${getTotalCost().toFixed(2)}</div>
+      {location.pathname === '/cart' ? null : (
+        <button onClick={goToCart}>Go to cart</button>
+      )}
+    </div>
+  );
+}
+
 export default Cart;
-export { useCart, CartContext };
+export { useCart, CartSummary, CartContext };

@@ -1,0 +1,19 @@
+.cart-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.cart-summary img {
+  height: 4rem;
+}
+
+.cart-summary button {
+  font-size: 1rem;
+  padding: 1rem;
+}

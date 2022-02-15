@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import './styles/App.css';
 import Nav from './components/Nav';
-import { useCart, CartContext } from './components/Cart';
+import { useCart, CartContext, CartSummary } from './components/Cart';
 
 function App() {
   const cart = useCart();
@@ -14,6 +14,7 @@ function App() {
       </header>
       <main>
         <CartContext.Provider value={cart}>
+          <CartSummary />
           <Outlet />
         </CartContext.Provider>
       </main>

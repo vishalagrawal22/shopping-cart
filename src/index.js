@@ -5,6 +5,7 @@ import App from './App';
 import Home from './components/Home';
 import Product from './components/Product';
 import Shop from './components/Shop';
+import Cart from './components/Cart';
 
 render(
   <StrictMode>
@@ -16,6 +17,7 @@ render(
             <Route index element={<Shop />} />
             <Route path="/shop/:productID" element={<Product />} />
           </Route>
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </BrowserRouter>
