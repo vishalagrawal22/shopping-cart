@@ -12,17 +12,9 @@ render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/products">
-            <Route
-              index
-              element={
-                <div>
-                  Append product id to the end of url to view a product.
-                </div>
-              }
-            />
-            <Route path=":productID" element={<Product />} />
+          <Route path="/shop">
+            <Route index element={<Shop />} />
+            <Route path="/shop/:productID" element={<Product />} />
           </Route>
         </Route>
       </Routes>
