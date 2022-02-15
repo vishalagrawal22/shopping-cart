@@ -76,7 +76,7 @@ function ProductCard({
   }
   return (
     <div className="product-item" id={product.id}>
-      <div onClick={moveToProductPage}>
+      <div className="product-item-details" onClick={moveToProductPage}>
         <h3>{product.title}</h3>
         <h5>{product.category}</h5>
         <img src={product.image} alt={product.title} />

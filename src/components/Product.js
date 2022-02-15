@@ -38,12 +38,14 @@ function Product() {
     return <div>Product is loading...</div>;
   } else {
     return (
-      <div className="product-details" id={product.id}>
-        <img src={product.image} alt={product.title} />
-        <h3>{product.title}</h3>
-        <h5>{product.category}</h5>
-        <p>{product.description}</p>
-        <h4>Price: ${product.price}</h4>
+      <div className="product-container">
+        <div className="product-details" id={product.id}>
+          <img src={product.image} alt={product.title} />
+          <h3>{product.title}</h3>
+          <h5>{product.category}</h5>
+          <p>{product.description}</p>
+          <h4>Price: ${product.price}</h4>
+        </div>
       </div>
     );
   }
