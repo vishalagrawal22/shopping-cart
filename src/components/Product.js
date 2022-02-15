@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { ProductFactory } from './ProductCard';
+import { ProductFactory, ProductForm } from './ProductCard';
 import '../styles/Product.css';
 
 function Product() {
@@ -45,6 +45,7 @@ function Product() {
           <h5>{product.category}</h5>
           <p>{product.description}</p>
           <h4>Price: ${product.price}</h4>
+          <ProductForm product={product} />
           <Link to="/shop">Back to shop</Link>
         </div>
       </div>

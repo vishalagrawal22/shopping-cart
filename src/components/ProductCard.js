@@ -80,4 +80,4 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
-export { ProductFactory };
+export { ProductFactory, ProductForm };
