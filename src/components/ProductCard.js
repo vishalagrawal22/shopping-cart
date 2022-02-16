@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { CartContext } from './Cart';
 
 import '../styles/ProductCard.css';
+import PropTypes from 'prop-types';
 
 function ProductFactory(id, title, price, category, description, image) {
   return { id, title, price, category, description, image };
@@ -61,6 +62,12 @@ function ProductForm({ product }) {
   }
 }
 
+ProductForm.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
+};
+
 function ProductCard({ product }) {
   let navigate = useNavigate();
   function moveToProductPage() {
@@ -78,6 +85,16 @@ function ProductCard({ product }) {
     </div>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
+};
 
 export default ProductCard;
 export { ProductFactory, ProductForm };
